@@ -1,0 +1,51 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.4'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.happyjob4'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+   
+   //mysql
+	runtimeOnly 'com.mysql:mysql-connector-j'
+   
+   //Mybatis
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+   
+   //JASPER
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+   
+   //JSTL 라이브러리를 Jakarta로 교체
+	implementation "jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0"
+	implementation "org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1"
+   
+   //servlet
+	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+    
+    //뷰페이지를 JSP롤 사용하기 위하여 프레임워크 추가
+   //tomcat-embed-jasper추가
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.13'
+   
+   // Logging
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
