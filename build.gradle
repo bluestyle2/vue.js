@@ -27,6 +27,10 @@ dependencies {
    //Mybatis
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
    
+   //서버를 재시작하지 않고도 프론트 변경 사항을 바로 확인
+   //utomatic Restart와 LiveReload..
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+   
    //JASPER
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
    
@@ -44,6 +48,10 @@ dependencies {
    
    // Logging
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+	
+	//파일 업로드..
+	implementation 'commons-io:commons-io:2.6'
+   
 }
 
 tasks.named('test') {

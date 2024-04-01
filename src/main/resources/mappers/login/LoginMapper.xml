@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.happyjob4.study.repository.login.LoginMapper">
+  <select id="login" parameterType="com.happyjob4.study.vo.login.LoginVo" resultType="com.happyjob4.study.vo.login.UserVo">
+    select USER_ID
+    	, USER_NAME
+    	, USER_TYPE
+    	, GENDER
+    	, BIRTH
+    	, TEL1
+    	, TEL2
+    	, TEL3
+    	, ADDR
+    	, ADDR_DETAIL
+    	, CREATE_DT
+    	, UPDATE_DT
+    	from TB_USERS 
+    	where USER_ID = #{id}
+    	and PASSWORD = #{pw}
+  </select>
+</mapper>
+
