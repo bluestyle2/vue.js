@@ -14,6 +14,7 @@ public class UserVo {
 	private String addrDetail;
 	private String createDt;
 	private String updateDt;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -86,7 +87,6 @@ public class UserVo {
 	public void setUpdateDt(String updateDt) {
 		this.updateDt = updateDt;
 	}
-	
 	
 	
 }

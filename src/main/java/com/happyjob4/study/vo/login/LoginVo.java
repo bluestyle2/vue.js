@@ -1,7 +1,7 @@
 package com.happyjob4.study.vo.login;
 
 public class LoginVo {
-
+	
 	private String id;
 	private String pw;
 	
@@ -17,11 +17,10 @@ public class LoginVo {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
+	
 	@Override
 	public String toString() {
-		return "LoginVo [id=" + id + ", pw=" + pw + ", getId()=" + getId() + ", getPw()=" + getPw() +  "]";
+		return "LoginVo [id=" + id + ", pw=" + pw + ", getId()=" + getId() + ", getPw()=" + getPw() + "]";
 	}
 
-	
-	
 }
