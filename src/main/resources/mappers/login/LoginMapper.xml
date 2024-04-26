@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.happyjob4.study.repository.login.LoginMapper">
+ <select id="login" parameterType="com.happyjob4.study.vo.login.LoginVo" 
+  					resultType="com.happyjob4.study.vo.login.UserVo">
+    select 
+ 		   USER_ID
+ 		 , USER_NAME
+ 		 , USER_TYPE
+ 		 , GENDER
+ 		 , BIRTH
+ 		 , TEL1
+ 		 , TEL2
+ 		 , TEL3
+ 		 , ADDR
+ 		 , ADDR_DETAIL
+ 		 , CREATE_DT
+ 		 , UPDATE_DT 
+      from TB_USERS 
+     where USER_ID = #{id}
+       and PASSWORD = #{pw}
+  </select>
+  <!-- 사용자 메뉴 권한 -->
+   <select id="usrMnuAtrtList" resultType="com.happyjob4.study.vo.login.UsrMnuAtrtVo">
+         /*com.happyjob.study.repository.login.LoginMapper.usrMnuAtrtList*/
+            SELECT  ta.mnu_id
+                  ,   ta.hir_mnu_id
+                  ,   ta.mnu_nm
+                  ,   ta.mnu_url
+                  ,   ta.mnu_dvs_cod
+                  ,   ta.grp_num
+                  ,   ta.odr
+                  ,   ta.lvl
+                  ,   ta.mnu_ico_cod
+               FROM  TM_MNU_MST ta
+               WHERE EXISTS (
+                             SELECT  1
+                             FROM  TN_USR_MNU_ATRT tb
+                             WHERE ta.mnu_id = tb.mnu_id
+                                  AND tb.user_type = #{userType}
+                           )
+                  AND ta.lvl=0
+               ORDER BY ta.odr
+     </select>
+     
+     <!-- 사용자 자식 메뉴 권한 -->
+   <select id="usrChildMnuAtrtList" resultType="com.happyjob4.study.vo.login.UsrMnuChildAtrtVo">
+      /*com.happyjob.study.repository.login.LoginMapper.usrChildMnuAtrtList*/
+         SELECT  ta.mnu_id
+               ,   ta.hir_mnu_id
+               ,   ta.mnu_nm
+               ,   ta.mnu_url
+               ,   ta.mnu_dvs_cod
+               ,   ta.grp_num
+               ,   ta.odr
+               ,   ta.lvl
+               ,   ta.use_poa
+               ,   ta.dlt_poa
+         FROM  TM_MNU_MST ta
+         WHERE EXISTS (
+                          SELECT  1
+                            FROM  TN_USR_MNU_ATRT tb
+                          WHERE ta.mnu_id = tb.mnu_id
+                               AND tb.user_type = #{userType}
+                     )
+            AND ta.lvl=1
+            AND hir_mnu_id = #{hirMnuId}
+         ORDER BY ta.odr
+     </select>
+</mapper>
+
